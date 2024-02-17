@@ -1,7 +1,10 @@
 import SwiftUI
+import TossPayments
 
 struct PaymentView: View {
-    let amount: String
+    let amount: Int
+    @State var isPresentedPayment = false
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Group {
@@ -21,6 +24,7 @@ struct PaymentView: View {
                     },
                 title: "신용카드",
                 action: {
+                    isPresentedPayment = true
                 })
             PaymentButton(
                 image:  {
@@ -39,14 +43,35 @@ struct PaymentView: View {
                 action: {
                 })
         }
-        
-        
+        .navigationTitle("결제")
+        .sheet(isPresented: $isPresentedPayment) {
+            TossPaymentsView(
+                clientKey: "test_ck_OyL0qZ4G1VODAxdNWDkroWb2MQYg",
+                paymentMethod: .카드,
+                paymentInfo: DefaultPaymentInfo(
+                    amount: Double(amount),
+                    orderId: "9lD0azJWxjBY0KOIumGzH",
+                    orderName: "스케쥴 \(amount / 100000)시간",
+                    customerName: "이석호"
+                ),
+                isPresented: $isPresentedPayment
+            )
+            .onSuccess { paymentKey, orderId, amount in
+                NavigationUtil.popToRootView()
+            }
+            .onFail { errorCode, errorMessage, orderId in
+                NavigationUtil.popToRootView()
+            }
+            .onDisappear(perform: {
+                NavigationUtil.popToRootView()
+            })
+        }
     }
 }
 
 struct PaymentViewPreView: View {
     var body: some View {
-        PaymentView(amount: "100,000")
+        PaymentView(amount: 100000)
     }
 }
 

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State var mentorTimeList: [MentorTimeEntity] = [
-        .init(title: "개발자의 시간을 팝니다", auhtor: "니콜라스", imageURL: "https://avatars.githubusercontent.com/u/74440939?v=4", date: "asdf", price: 112)
+        .init(title: "개발자의 시간을 팝니다", auhtor: "니콜라스", imageURL: "https://avatars.githubusercontent.com/u/74440939?v=4", date: "1시간 전", price: 100000)
     ]
     @State var selectedMentorTime: MentorTimeEntity?
 
@@ -65,9 +65,9 @@ struct HomeView: View {
                     name: "baekteun",
                     job: "iOS Engineer",
                     title: "baekteun",
-                    postTime: "12",
-                    text: "Asdf",
-                    amount: "12",
+                    postTime: "100000",
+                    text: "안녕하세요. iOS 개발 1인분은 할 수 있게 해드립니다",
+                    amount: "100000",
                     isCheck: true
                 )
             )

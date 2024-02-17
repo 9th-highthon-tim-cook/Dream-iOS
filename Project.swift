@@ -17,7 +17,8 @@ let project = Project(
             sources: ["Source/**"],
             resources: ["Resource/**"],
             dependencies: [
-                .external(name: "Moya")
+                .external(name: "Moya"),
+                .external(name: "TossPayments")
             ]
         )
     ]

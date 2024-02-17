@@ -3,6 +3,7 @@ import SwiftUI
 struct HomeDetailView: View {
     let detailEntity: DetailEntity
     @Environment(\.dismiss) var dismiss
+    @State var isNavigateScheduleDateSelect = false
     
     var body: some View {
         ScrollView {
@@ -92,7 +93,7 @@ struct HomeDetailView: View {
                 }
                 Spacer()
                 Button("구매하기") {
-                    
+                    isNavigateScheduleDateSelect = true
                 }
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(.white)
@@ -116,6 +117,9 @@ struct HomeDetailView: View {
                         dismiss()
                     }
             }
+        }
+        .navigationDestination(isPresented: $isNavigateScheduleDateSelect) {
+            ScheduleDateSelectView()
         }
         .navigationBarBackButtonHidden()
     }
