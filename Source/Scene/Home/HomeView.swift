@@ -4,6 +4,7 @@ struct HomeView: View {
     @State var mentorTimeList: [MentorTimeEntity] = [
         .init(title: "개발자의 시간을 팝니다", auhtor: "니콜라스", imageURL: "https://avatars.githubusercontent.com/u/74440939?v=4", date: "asdf", price: 112)
     ]
+    @State var selectedMentorTime: MentorTimeEntity?
 
     var body: some View {
         VStack(spacing: 16) {
@@ -47,11 +48,30 @@ struct HomeView: View {
                             Divider()
                         }
                         .padding(.horizontal, 16)
+                        .buttonWrapper {
+                            selectedMentorTime = mentorTime
+                        }
                     }
                 }
             }
 
             Spacer()
+        }
+        .navigationDestination(item: $selectedMentorTime) { mentorTime in
+            HomeDetailView(
+                detailEntity: .init(
+                    detailImageURL: "https://avatars.githubusercontent.com/u/74440939?v=4",
+                    profileImageURL: "https://avatars.githubusercontent.com/u/74440939?v=4",
+                    name: "baekteun",
+                    job: "iOS Engineer",
+                    title: "baekteun",
+                    postTime: "12",
+                    text: "Asdf",
+                    amount: "12",
+                    isCheck: true
+                )
+            )
+            .toolbar(.hidden, for: .tabBar)
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {

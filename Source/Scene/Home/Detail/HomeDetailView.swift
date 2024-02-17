@@ -2,23 +2,45 @@ import SwiftUI
 
 struct HomeDetailView: View {
     let detailEntity: DetailEntity
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                Image(.faker1)
-                    .resizable()
-                    .frame(height: 393)
-                HStack(spacing: 8) {
-                    Image(detailEntity.postTime)
-                        .frame(width: 49, height: 49)
-                        .clipShape(Circle())
-                        .overlay(alignment: .bottomTrailing) {
-                            if detailEntity.isCheck {
-                                Image(.check)
+                if let profile = detailEntity.detailImageURL {
+                    AsyncImage(url: URL(string: profile)) { image in
+                        image
+                            .resizable()
+                            .frame(maxWidth: .infinity)
+                            .aspectRatio(1, contentMode: .fit)
+                            .overlay(alignment: .top) {
+                                LinearGradient(colors: [.black.opacity(0.5), .clear], startPoint: .top, endPoint: .bottom)
                             }
-                        }
-                        .padding(.leading, 16)
+                    } placeholder: {
+                        EmptyView()
+                    }
+                }
+                    
+                HStack(spacing: 8) {
+                    AsyncImage(url: URL(string: detailEntity.profileImageURL)) { image in
+                        image
+                            .resizable()
+                            .frame(width: 49, height: 49)
+                            .clipShape(Circle())
+                            .overlay(alignment: .bottomTrailing) {
+                                if detailEntity.isCheck {
+                                    Image(.check)
+                                }
+                            }
+                            .padding(.leading, 16)
+                    } placeholder: {
+                        Circle()
+                            .fill(Color.gray)
+                            .frame(width: 49, height: 49)
+                    }
+
+                    Image(detailEntity.postTime)
+                        
                     VStack(alignment: .leading, spacing: 7) {
                         Text(detailEntity.name)
                             .font(.system(size: 16, weight: .bold))
@@ -51,6 +73,7 @@ struct HomeDetailView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .ignoresSafeArea()
+
         VStack(spacing: 5) {
             Divider()
                 .frame(height: 1)
@@ -71,7 +94,6 @@ struct HomeDetailView: View {
                 Button("구매하기") {
                     
                 }
-                .frame(width: 177, height: 56)
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(.white)
                 .padding(.vertical, 18)
@@ -86,7 +108,16 @@ struct HomeDetailView: View {
             
         }
         .padding(.bottom, 16)
-        //        .background(Color.black)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Image(systemName: "chevron.left")
+                    .foregroundStyle(.white)
+                    .buttonWrapper {
+                        dismiss()
+                    }
+            }
+        }
+        .navigationBarBackButtonHidden()
     }
     
 }
@@ -94,8 +125,8 @@ struct HomeDetailView: View {
 struct HomeDetailViewPreView: View {
     var body: some View {
         HomeDetailView(detailEntity: DetailEntity.init(
-            detailImage: Image(.faker),
-            profileImage: "",
+            detailImageURL: "https://avatars.githubusercontent.com/u/74440939?v=4",
+            profileImageURL: "",
             name: "이상혁",
             job: "프로게이머",
             title: "페이커의 시간을 구합니다",
