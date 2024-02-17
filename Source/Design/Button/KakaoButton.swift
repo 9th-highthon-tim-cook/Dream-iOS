@@ -11,7 +11,7 @@ struct KakaoButton: View {
     var body: some View {
             Button(action: action) {
                 HStack(spacing: 8) {
-                    Image(uiImage: UIImage(named: "kakao")!)
+                    Image(.kakao)
                         .scaledToFit()
                         .frame(height: 21.52)
 
@@ -23,7 +23,7 @@ struct KakaoButton: View {
             }
             .frame(height: 46)
             .frame(maxWidth: .infinity)
-            .background(Color("kakao"))
+            .background(Color(.kakao))
             .cornerRadius(12)
 
     }
