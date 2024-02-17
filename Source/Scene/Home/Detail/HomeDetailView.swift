@@ -13,7 +13,7 @@ struct HomeDetailView: View {
                     ZStack {
                         Image(detailEntity.postTime)
                             .frame(width: 49, height: 49)
-                            .cornerRadius(49/2)
+                            .clipeShape(Circle())
                         Image(.check)
                             .padding(.horizontal, 31)
                     }
