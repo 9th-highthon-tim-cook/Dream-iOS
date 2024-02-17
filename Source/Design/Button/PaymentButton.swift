@@ -1,13 +1,13 @@
 import SwiftUI
 
-struct PaymentButton: View {
+struct PaymentButton<Content: View>: View {
 
-    let image: Image
+    let image: () -> Content
     let title: String
     let action: () -> Void
     
     init(
-        image: Image,
+        @ViewBuilder image: @escaping () -> Content,
         title: String,
         action: @escaping () -> Void
     ) {
@@ -19,8 +19,7 @@ struct PaymentButton: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: 69){
-                image
-                    .resizable()
+                image()
                     .scaledToFit()
                     .frame(height: 74)
                 Text(title)
@@ -29,17 +28,19 @@ struct PaymentButton: View {
             }
             .frame(height: 128)
             .frame(maxWidth: .infinity)
-            .background(Color(uiColor: UIColor(named: "netural50")!))
+            .background(Color(.netural50))
             .cornerRadius(20)
         }
-        .padding([.leading, .trailing], 58)
+        .padding(.horizontal, 58)
     }
 }
 
 struct PaymentButtonPreView: View {
     var body: some View {
         PaymentButton(
-            image:  Image("credit_card"),
+            image:  {
+                Image("credit_card")
+            },
             title: "신용카드",
             action: {
             

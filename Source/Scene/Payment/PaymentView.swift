@@ -15,17 +15,26 @@ struct PaymentView: View {
             }
             .padding(.leading, 58)
             PaymentButton(
-                image: Image("credit_card"),
+                image: { 
+                    Image(.creditCard)
+                        .resizable()
+                    },
                 title: "신용카드",
                 action: {
                 })
             PaymentButton(
-                image: Image("money_bag"),
+                image:  {
+                    Image(.moneyBag)
+                        .resizable()
+                },
                 title: "무통장입금",
                 action: {
                 })
             PaymentButton(
-                image: Image("pass_book"),
+                image:{
+                    Image(.passBook)
+                        .resizable()
+                },
                 title: "계좌이체",
                 action: {
                 })
