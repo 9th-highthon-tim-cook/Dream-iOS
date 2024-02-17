@@ -15,6 +15,17 @@ struct ContentView: View {
                     Image(systemName: "house.fill")
                 }
             }
+            NavigationStack {
+                MyPageView()
+            }
+            .tag(2)
+            .tabItem {
+                Label {
+                    Text("마이페이지")
+                } icon: {
+                    Image(systemName: "person.circle.fill")
+                }
+            }
         }
         .accentColor(Color(.neturalBlack))
     }
