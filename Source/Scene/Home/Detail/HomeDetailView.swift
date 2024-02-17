@@ -10,14 +10,15 @@ struct HomeDetailView: View {
                     .resizable()
                     .frame(height: 393)
                 HStack(spacing: 8) {
-                    ZStack {
-                        Image(detailEntity.postTime)
-                            .frame(width: 49, height: 49)
-                            .cornerRadius(49/2)
-                        Image(.check)
-                            .padding(.horizontal, 31)
-                    }
-                    .padding(.leading, 16)
+                    Image(detailEntity.postTime)
+                        .frame(width: 49, height: 49)
+                        .clipShape(Circle())
+                        .overlay(alignment: .bottomTrailing) {
+                            if detailEntity.isCheck {
+                                Image(.check)
+                            }
+                        }
+                        .padding(.leading, 16)
                     VStack(alignment: .leading, spacing: 7) {
                         Text(detailEntity.name)
                             .font(.system(size: 16, weight: .bold))
@@ -43,7 +44,7 @@ struct HomeDetailView: View {
                     Text(detailEntity.text)
                         .padding(.top, 25)
                         .font(.system(size: 16, weight: .medium))
-
+                    
                 }
                 .padding(.horizontal, 16)
             }
@@ -81,9 +82,9 @@ struct HomeDetailView: View {
             
         }
         .padding(.bottom, 16)
-//        .background(Color.black)
+        //        .background(Color.black)
     }
-
+    
 }
 
 struct HomeDetailViewPreView: View {
@@ -96,7 +97,8 @@ struct HomeDetailViewPreView: View {
             title: "페이커의 시간을 구합니다",
             postTime: "2시간 전",
             text: "어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구어쩌구저쩌구",
-            amount: "300,000"
+            amount: "300,000",
+            isCheck: true
         ))
     }
 }

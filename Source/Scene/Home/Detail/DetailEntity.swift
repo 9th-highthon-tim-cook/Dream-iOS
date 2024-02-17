@@ -11,5 +11,5 @@ struct DetailEntity {
     let postTime: String
     let text: String
     let amount: String
-
+    let isCheck: Bool
 }
