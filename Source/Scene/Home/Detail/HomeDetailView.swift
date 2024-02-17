@@ -71,7 +71,6 @@ struct HomeDetailView: View {
                 Button("구매하기") {
                     
                 }
-                .frame(width: 177, height: 56)
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(.white)
                 .padding(.vertical, 18)
