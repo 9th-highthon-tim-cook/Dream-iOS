@@ -18,7 +18,8 @@ let project = Project(
             resources: ["Resource/**"],
             dependencies: [
                 .external(name: "Moya"),
-                .external(name: "TossPayments")
+                .external(name: "TossPayments"),
+                .external(name: "KakaoSDK")
             ]
         )
     ]
