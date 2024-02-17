@@ -74,8 +74,12 @@ struct HomeDetailView: View {
                 .frame(width: 177, height: 56)
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(.white)
-                .background(Color(.primary500))
-                .cornerRadius(10)
+                .padding(.vertical, 18)
+                .padding(.horizontal, 60)
+                .background {
+                    RoundedRectangle(corenrRadius: 10)
+                        .fill(Color(.primary500))
+                }
                 
             }
             .padding(.horizontal, 16)
