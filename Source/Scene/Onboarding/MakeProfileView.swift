@@ -15,6 +15,7 @@ struct MakeProfileView: View {
     @State var business: String = ""
     @State var salary: Int = 0
     @State var years: String = ""
+    @EnvironmentObject var sceneState: SceneState
     
     var body: some View {
         ZStack(alignment: .bottom) {
