@@ -58,6 +58,12 @@ struct HomeView: View {
 
             Spacer()
         }
+        .task {
+//            var request = URLRequest(url: "http://192.168.10.147:3034/post/list")
+//            let access = UserDefaults.standard.string(forKey: "accessToken")!
+//            request.addValue(<#T##String#>, forHTTPHeaderField: <#T##String#>)
+//            let response = try await
+        }
         .navigationDestination(item: $selectedMentorTime) { mentorTime in
             HomeDetailView(
                 detailEntity: .init(

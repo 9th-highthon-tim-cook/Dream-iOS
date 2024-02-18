@@ -39,14 +39,31 @@ struct MakeProfileView: View {
                 }
                 .padding(16)
             }
-            NavigationLink(destination: CompleteView(type: .mentor)) {
                 Text("완료")
                     .foregroundStyle(Color(.neturalWhite))
                     .padding(.vertical, 18)
                     .frame(maxWidth: .infinity)
                     .background(Color(.primary500))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-            }
+                    .buttonWrapper {
+                        Task {
+                            var request = try URLRequest(url: "http://192.168.10.147:3034/user/signup", method: .post)
+                            let mentorReq = MentorSignupRequest(
+                                nickname: "박도연",
+                                userId: UserDefaults.standard.string(forKey: "userID")!,
+                                salary: Int(salary),
+                                career: businessType,
+                                company: business.isEmpty ? nil : business,
+                                careerYear: Int(years),
+                                description: introduce
+                            )
+                            let json = try JSONEncoder().encode(mentorReq)
+                            request.httpBody = json
+                            let (data, res) = try await URLSession.shared.data(for: request)
+                            print(String(data: data, encoding: .utf8))
+                            print(res)
+                        }
+                    }
             .padding(16)
         }
         .navigationTitle("프로필 만들기")
