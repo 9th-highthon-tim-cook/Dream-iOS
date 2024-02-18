@@ -62,6 +62,7 @@ struct MakeProfileView: View {
                             let (data, res) = try await URLSession.shared.data(for: request)
                             print(String(data: data, encoding: .utf8))
                             print(res)
+                            sceneState.scene = .home
                         }
                     }
             .padding(16)
