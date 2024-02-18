@@ -1,9 +1,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State var mentorTimeList: [MentorTimeEntity] = [
-        .init(title: "개발자의 시간을 팝니다", auhtor: "니콜라스", imageURL: "https://avatars.githubusercontent.com/u/74440939?v=4", date: "1시간 전", price: 100000)
-    ]
+    @State var mentorTimeList: [MentorTimeEntity] = []
     @State var selectedMentorTime: MentorTimeEntity?
 
     var body: some View {
@@ -59,10 +57,15 @@ struct HomeView: View {
             Spacer()
         }
         .task {
-//            var request = URLRequest(url: "http://192.168.10.147:3034/post/list")
-//            let access = UserDefaults.standard.string(forKey: "accessToken")!
-//            request.addValue(<#T##String#>, forHTTPHeaderField: <#T##String#>)
-//            let response = try await
+            do {
+                var request = URLRequest(url: URL(string: "http://192.168.10.147:3034/post/list")!)
+                let access = UserDefaults.standard.string(forKey: "accessToken")!
+                request.addValue(access, forHTTPHeaderField: "Authorization")
+                let (data, response) = try await URLSession.shared.data(for: request)
+                print(String(data: data, encoding: .utf8), response)
+                let json = try JSONDecoder().decode([PostListResponse].self, from: data)
+                self.mentorTimeList = json.map { $0.toDomain() }
+            } catch {}
         }
         .navigationDestination(item: $selectedMentorTime) { mentorTime in
             HomeDetailView(

@@ -42,6 +42,7 @@ struct CompleteView: View {
         .task {
             do {
                 var request = try URLRequest(url: "http://192.168.10.147:3034/user/signup", method: .post)
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
                 let menteeReq = MenteeSIgnupRequest(nickname: "최형우", userId: UserDefaults.standard.string(forKey: "userID")!)
                 let json = try JSONEncoder().encode(menteeReq)
                 request.httpBody = json

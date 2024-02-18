@@ -49,6 +49,7 @@ struct MakeProfileView: View {
                     .buttonWrapper {
                         Task {
                             var request = try URLRequest(url: "http://192.168.10.147:3034/user/signup", method: .post)
+                            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
                             let mentorReq = MentorSignupRequest(
                                 nickname: "박도연",
                                 userId: UserDefaults.standard.string(forKey: "userID")!,
