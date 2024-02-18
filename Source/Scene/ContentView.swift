@@ -16,6 +16,17 @@ struct ContentView: View {
                 }
             }
             NavigationStack {
+                ChatListView()
+            }
+            .tag(1)
+            .tabItem {
+                Label {
+                    Text("채팅")
+                } icon: {
+                    Image(systemName: "message.fill")
+                }
+            }
+            NavigationStack {
                 MyPageView()
             }
             .tag(2)
