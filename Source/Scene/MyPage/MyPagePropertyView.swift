@@ -1,11 +1,3 @@
-//
-//  MyPagePropertyView.swift
-//  Dream
-//
-//  Created by Mercen on 2/18/24.
-//  Copyright © 2024 com.highthon. All rights reserved.
-//
-
 import SwiftUI
 
 struct MyPagePropertyView: View {

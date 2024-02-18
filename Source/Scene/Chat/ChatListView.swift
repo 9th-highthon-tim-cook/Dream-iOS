@@ -3,7 +3,7 @@ import SwiftUI
 struct ChatListView: View {
     let chatListEntity = [
         ChatListEntity(
-            profileImage: "https://avatars.githubusercontent.com/u/74440939?v=4",
+            profileImage: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fpds.joongang.co.kr%2Fnews%2Fcomponent%2Fhtmlphoto_mmdata%2F202303%2F27%2Ff5dd0d48-5c7a-4caf-861c-04ff58531dc9.jpg&tbnid=-9K53HpDhE29AM&vet=12ahUKEwimwpO81LOEAxU6xjQHHYoIDOgQMygFegQIARBw..i&imgrefurl=https%3A%2F%2Fwww.joongang.co.kr%2Farticle%2F25150266&docid=fV7sxPDlwpui5M&w=2048&h=2812&q=%ED%8E%98%EC%9D%B4%EC%BB%A4&ved=2ahUKEwimwpO81LOEAxU6xjQHHYoIDOgQMygFegQIARBw",
             name: "이상혁",
             isCheck: true,
             isMenti: true,
